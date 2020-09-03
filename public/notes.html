@@ -13,6 +13,8 @@
 
 </head>
 
+<!-- made a couple layout changes -->
+
 <body>
   <nav class="navbar navbar-dark bg-dark">
     <a class="navbar-brand" href="/">Note Taker
@@ -41,37 +43,6 @@
       </div>
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="/assets/js/index.js"></script>
-    <script>
-      $(".save-note").on("click", function () {
-        let note = {
-          title: $(".note-title").val().trim(),
-          text: $(".note-text").val().trim(),
-        }
-
-        $.post("/api/notes", note)
-          .then(function (data) {
-            console.log(data)
-            alert("Your note has been saved")
-            generateNotes();
-          })
-      })
-      function generateNotes() {
-        $.get("/api/notes")
-          .then(function (data) {
-            for (let i in data) {
-              console.log(data);
-              let newNote = `
-        <h4 class="bg-light rounded mt-1">${data[i].title}</h4>
-        `
-              $("#savedNotes").append(newNote);
-            }
-          })
-      }
-      generateNotes();
-
-    </script>
 </body>
 
 </html>
