@@ -1,9 +1,7 @@
 const path = require("path");
 const fs = require("fs");
-const notesArray = require("db.json");
+const notesArray = require("./db.json");
 const { v4: uuidv4 } = require('uuid');
-
-// Changed and moved routes code from server.js into its own .js file //
 
 module.exports = app => {
     app.get("/api/notes", (req, res) => {
@@ -39,13 +37,4 @@ module.exports = app => {
             }
         }
     })
-};
-
-module.exports = app => {   
-    app.get("/notes", (req, res) => {
-        res.sendFile(path.join(__dirname, "../public/notes.html"));
-    });
-    app.get("*", (req, res) => {
-        res.sendFile(path.join(__dirname, "../public/index.html"));
-    });
 };
